@@ -11,9 +11,10 @@ import LineGraph from '../../components/graph'
 //Context
 import ThemeContext from "../../theme/Context";
 
-const { GOOGLE_API_KEY } = process.env;
 
-export default function PlaceContainer({ googleApiKey }) {
+export default function PlaceContainer() {
+  const { GOOGLE_API_KEY } = process.env;
+  // console.log(GOOGLE_API_KEY);
   const router = useRouter();
   const { placeId } = router.query;
   const { invertedThemeClass, themeClass, spinnerThemeColor } = useContext(ThemeContext);
@@ -46,7 +47,7 @@ export default function PlaceContainer({ googleApiKey }) {
           <Map.Container
             coords={coords}
             label={detailsData?.result.name}
-            googleApiKey={googleApiKey}
+            googleApiKey='AIzaSyDvVtsxlyO0KRwGn70W2CVEbzfJCgTU8p0'
           />
           <div className={`gradient ${themeClass}`}></div>
         </section>
@@ -100,10 +101,10 @@ export default function PlaceContainer({ googleApiKey }) {
   );
 }
 
-export async function getServerSideProps() {
-  return {
-    props: {
-      googleApiKey: GOOGLE_API_KEY,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   return {
+//     props: {
+//       googleApiKey: GOOGLE_API_KEY,
+//     },
+//   };
+// }
